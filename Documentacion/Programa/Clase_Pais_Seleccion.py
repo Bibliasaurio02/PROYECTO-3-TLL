@@ -499,7 +499,7 @@ class Seleccion:
             suma_total = 0
 
             c = 1
-            f = 0
+            
 
                 
 
@@ -670,7 +670,7 @@ def registrar_seleccion(codigo_equipo, nombre_pais):
 
         return Seleccion(codigo_equipo, nombre_pais)
     
-
+#124 probando
     else:
 
         # variable

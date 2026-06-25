@@ -142,8 +142,9 @@ class Futbolista(Persona):
 
     #S: retorna la modificacion de los atributos del objeto futbolista
 
-    #R: el dorsal y puntaje individual deben ser interger(int)  |  la aposicion debe ser string(str)
-
+    #R: el dorsal y puntaje individual deben ser interger(int)  |  la aposicion debe ser string(str)    
+    
+#Podemos usar checklist con TKINTER
     def actualizar_datos(self, dorsal, posicion, puntaje_individual):
     # ------------------------------
 
