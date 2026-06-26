@@ -5,9 +5,13 @@ class Grupo :
 
 
 #Objetivo: Método constructor de la clase Grupo
+
 #Entrada: Nombre del grupo
+
 #Salida: Un objeto tal construido de la clase Grupo
+
 #Restricciones: nombre_grupo debe ser un string no vacío
+
     def __init__(self, nombre_grupo):
 
         
@@ -19,9 +23,14 @@ class Grupo :
         self.__partidos = []
 
 
+
+
 #Objetivo: Método que agrega un equipo a la lista de equipos del grupo
+
 #Entrada: equipo (objeto de la clase Equipo), es una selección de un país que participa en el grupo
+
 #Salida: Se agrega el equipo a la lista de equipos del grupo
+
 #Restricciones: El equipo no puede ya estar en la lista del grupo, y debe tener máximo 3 selecciones para poder añadírsele una más | retorna un error sino.
 
     def agregar_equipo(self, equipo):
@@ -43,12 +52,18 @@ class Grupo :
 
         self.__equipos.append(equipo)
 
+
+
 #Método para crear los partidos necesarios:
 
 #Objetivo: Generar los 6 partidos de la fase de grupos (formato todos contra todos).
+
 #Entrada: No recibe parámetros externos (utiliza la lista self.__equipos).
+
 #Salida: Se crean y agregan 6 objetos Partido a la lista self.__partidos.
+
 #Restricciones: El grupo debe tener exactamente 4 equipos para generar los partidos correctamente.
+
 def generar_partidos(self):
     
     # Validación defensiva
@@ -69,10 +84,15 @@ def generar_partidos(self):
             # Guardar en la lista del grupo
             self.__partidos.append(partido)
 
+
 #Objetivo: Calcular la tabla de puntos de los partidos.
+
 #Entrada: El mismo objeto.
+
 #Salida: La tabla con valores numericos que representan los puntos de cada seleccion por sus jugadores.
+
 #Restricciones: Deben haber partidos en la lista para poder calcular puntos
+
 def calcular_tabla(self):
 
     if len(self.__partidos) == 0:
@@ -108,9 +128,13 @@ def calcular_tabla(self):
         
 
 #Método para ordenar la tabla de puntos de los equipos en el grupo:
-#Objetivo: Ordenar la tabla de puntos de los equipos en el grupo de mayor a
+
+#Objetivo: Ordenar la tabla de puntos de los equipos en el grupo de mayor a menor.
+
 #Entrada: La tabla de puntos calculada previamente.
+
 #Salida: La tabla de puntos ordenada de mayor a menor.
+
 #Restricciones: La tabla de puntos debe estar calculada previamente.
 
 def ordenar_tabla(self, puntosPorJugador):
