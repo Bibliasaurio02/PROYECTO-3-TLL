@@ -1,3 +1,5 @@
+from Clase_Partido import Partido 
+
 class Grupo :
 
 
@@ -20,10 +22,10 @@ class Grupo :
 #Objetivo: Método que agrega un equipo a la lista de equipos del grupo
 #Entrada: equipo (objeto de la clase Equipo), es una selección de un país que participa en el grupo
 #Salida: Se agrega el equipo a la lista de equipos del grupo
-#Restricciones: El equipo no puede ya estar en la lista del grupo, y debe tener máximo 3 selecciones para poder añadírsele una más.
+#Restricciones: El equipo no puede ya estar en la lista del grupo, y debe tener máximo 3 selecciones para poder añadírsele una más | retorna un error sino.
 
     def agregar_equipo(self, equipo):
-#Validad que no sea de =+4 el grupo ya.
+#Valida que no sea de =+4 el grupo ya.
         if len(self.__equipos) == 4:
 
             return f"Grupo ya tiene 4 selecciones"
@@ -33,13 +35,78 @@ class Grupo :
 
             
 
-            if seleccion == self.__equipos:
+            if (equipo.codigo_equipo == seleccion.codigo_equipo) or (equipo.pais.nombre_pais == seleccion.pais.nombre_pais):
 
-                return f"equipo ya está en el grupo"
+                return f"Selección del país ya está en el grupo"
             
-#Añadir selección al grupo
+#Acción real de añadir selección al grupo
 
         self.__equipos.append(equipo)
+
+#Método para crear los partidos necesarios:
+
+#Objetivo: Generar los 6 partidos de la fase de grupos (formato todos contra todos).
+#Entrada: No recibe parámetros externos (utiliza la lista self.__equipos).
+#Salida: Se crean y agregan 6 objetos Partido a la lista self.__partidos.
+#Restricciones: El grupo debe tener exactamente 4 equipos para generar los partidos correctamente.
+def generar_partidos(self):
+    
+    # Validación defensiva
+    if len(self.__equipos) != 4:
+        return "Error: El grupo no tiene 4 equipos para generar los partidos."
+
+    # Ciclos anidados para emparejar sin repetir
+    for i in range(len(self.__equipos)):
+        for j in range(i + 1, len(self.__equipos)):
+            
+            # Asignar local y visitante
+            local = self.__equipos[i]
+            visitante = self.__equipos[j]
+            
+            
+            partido = Partido(local, visitante, "2026-06-15")
+            
+            # Guardar en la lista del grupo
+            self.__partidos.append(partido)
+
+#Objetivo: Calcular la tabla de puntos de los partidos.
+#Entrada: El mismo objeto.
+#Salida: La tabla con valores numericos que representan los puntos de cada seleccion por sus jugadores.
+#Restricciones: Deben haber partidos en la lista para poder calcular puntos
+def calcular_tabla(self):
+
+    if len(self.__partidos) == 0:
+
+        return f"No hay partidos para calcular la tabla de puntos."
+
+    puntosPorJugador = {}
+
+    for equipo in self.__equipos:
+
+        puntosPorJugador[equipo.codigo_equipo] = 0
+
+    for partido in self.__partidos:
+
+        if partido.goles_1 > partido.goles_2:
+
+            puntosPorJugador[partido.equipo_1.codigo_equipo] += 3
+
+        if partido.goles_1 == partido.goles_2:
+
+            puntosPorJugador[partido.equipo_1.codigo_equipo] +=1
+
+            puntosPorJugador[partido.equipo_2.codigo_equipo] +=1
+
+        if partido.goles_1 < partido.goles_2:
+
+            puntosPorJugador[partido.equipo_1.codigo_equipo] += 3
+        
+
+
+
+    
             
 
+       
             
+    
