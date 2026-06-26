@@ -78,35 +78,63 @@ def calcular_tabla(self):
     if len(self.__partidos) == 0:
 
         return f"No hay partidos para calcular la tabla de puntos."
-
+# self.__equipos | tipo: lista, contiene: objetos de la clase Seleccion, quién la usa: Grupo.
+# puntosPorJugador | tipo: diccionario, contiene: claves (string codigo_equipo) y valores (int puntos), quién la usa: Grupo.
     puntosPorJugador = {}
 
     for equipo in self.__equipos:
 
         puntosPorJugador[equipo.codigo_equipo] = 0
 
+
+
     for partido in self.__partidos:
 
+
+#Si el equipo 1 gana, se le asignan 3 puntos al equipo 1, si empatan se le asigna 1 punto a cada equipo, y si gana el equipo 2 se le asignan 3 puntos al equipo 2.
         if partido.goles_1 > partido.goles_2:
 
             puntosPorJugador[partido.equipo_1.codigo_equipo] += 3
-
+#Si el equipo 1 y el equipo 2 empatan, se le asigna 1 punto a cada equipo.
         if partido.goles_1 == partido.goles_2:
 
             puntosPorJugador[partido.equipo_1.codigo_equipo] +=1
 
             puntosPorJugador[partido.equipo_2.codigo_equipo] +=1
-
+#Si el equipo 2 gana, se le asignan 3 puntos al equipo 2.
         if partido.goles_1 < partido.goles_2:
 
-            puntosPorJugador[partido.equipo_1.codigo_equipo] += 3
+            puntosPorJugador[partido.equipo_2.codigo_equipo] += 3
         
 
+#Método para ordenar la tabla de puntos de los equipos en el grupo:
+#Objetivo: Ordenar la tabla de puntos de los equipos en el grupo de mayor a
+#Entrada: La tabla de puntos calculada previamente.
+#Salida: La tabla de puntos ordenada de mayor a menor.
+#Restricciones: La tabla de puntos debe estar calculada previamente.
+
+def ordenar_tabla(self, puntosPorJugador):
+
+    for equipo in self.__equipos:
+
+        puntos_de_equipo = puntosPorJugador[equipo.codigo_equipo]
+
+    for i in range(len(self.__equipos)):
+
+        for j in range(i + 1, len(self.__equipos)):
+
+            equipo_1 = self.__equipos[i]
+
+            equipo_2 = self.__equipos[j]
+
+            temporal = self.__equipos[i]
 
 
-    
-            
+            if equipo_1.[puntos_de_equipo] > equipo_2.[puntos_de_equipo]:
 
-       
-            
-    
+                self.__equipos[i] = self.__equipos[j]
+
+            if equipo_1.[puntos_de_equipo] < equipo_2.[puntos_de_equipo]:
+
+                self.__equipos[j] = temporal
+        
